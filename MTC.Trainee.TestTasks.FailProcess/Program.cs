@@ -15,30 +15,30 @@ public class Program
 
 		Console.WriteLine("Failed to fail process");
 		Console.ReadKey();
+	}
 
-		static void FailProcess(Action failProcessAction)
-		{
-			failProcessAction();
-		}
+	static void FailProcess(Action failProcessAction)
+	{
+		failProcessAction();
+	}
 
-		static void FailProcessUsingEnvironmentExit()
-		{
-			Environment.Exit(-1);
-		}
+	static void FailProcessUsingEnvironmentExit()
+	{
+		Environment.Exit(-1);
+	}
 
-		static void FailProcessUsingEnvironmentFailFast()
-		{
-			Environment.FailFast("Successful crash of the process");
-		}
+	static void FailProcessUsingEnvironmentFailFast()
+	{
+		Environment.FailFast("Successful crash of the process");
+	}
 
-		static void FailProcessUsingGetProcesses()
+	static void FailProcessUsingGetProcesses()
+	{
+		foreach (var process in Process.GetProcessesByName("MTC.Trainee.TestTasks.FailProcess"))
 		{
-			foreach (var process in Process.GetProcessesByName("MTC.Trainee.TestTasks.FailProcess"))
-			{
-				process.Kill();
-				process.WaitForExit();
-				process.Dispose();
-			}
+			process.Kill();
+			process.WaitForExit();
+			process.Dispose();
 		}
 	}
 }

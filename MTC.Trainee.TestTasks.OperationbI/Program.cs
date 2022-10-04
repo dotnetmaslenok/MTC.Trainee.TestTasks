@@ -20,7 +20,7 @@ class Program
 				return $"{left._number + rightValue}";
 			}
 
-			return string.Empty;
+			return left._number + right;
 		}
 
 		public override string ToString()
